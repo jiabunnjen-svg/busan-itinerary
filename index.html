@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUSAN VIBE | 蔚藍釜山 4 天 3 夜慢活之旅</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* ==========================================
+       1. DESIGN SYSTEM VARIABLES
+       ========================================== */
+    :root {
+      --bg-color: #F4F1EA;       /* 奶油白 / 象牙灰 */
+      --primary: #0F2537;        /* 釜山深海藍 */
+      --secondary: #E07A5F;      /* 海岸暖橘 */
+      --card-bg: #FFFFFF;
+      --text-main: #1D2D35;
+      --text-muted: #6C7A89;
+      --accent-blue: #1C3D5A;
+      --tag-bg: #EAE6DF;
+      --border-radius: 16px;
+      --shadow: 0 10px 30px rgba(15, 37, 55, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 50px;
+    }
+
+    /* ==========================================
+       2. HERO SECTION & BENTO GRID
+       ========================================== */
+    header.hero {
+      background: linear-gradient(135deg, var(--primary) 0%, #1A3A52 100%);
+      color: #FFFFFF;
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom-left-radius: 28px;
+      border-bottom-right-radius: 28px;
+      box-shadow: 0 12px 24px rgba(15, 37, 55, 0.15);
+    }
+
+    .brand-title {
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .hero h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* Bento Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: -20px;
+      margin-bottom: 24px;
+    }
+
+    .bento-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .bento-card.full-width {
+      grid-column: span 2;
+    }
+
+    .bento-card .icon {
+      font-size: 1.2rem;
+      color: var(--secondary);
+      margin-bottom: 6px;
+    }
+
+    .bento-card .label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .bento-card .val {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .tags-wrapper {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      color: var(--primary);
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      background-color: var(--secondary);
+      color: #FFF;
+      padding: 12px;
+      border-radius: var(--border-radius);
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(224, 122, 95, 0.3);
+      transition: opacity 0.2s;
+    }
+
+    /* ==========================================
+       3. PIN TO TOP TAB NAVIGATION
+       ========================================== */
+    .tabs-sticky-wrapper {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: rgba(244, 241, 234, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 10px 0;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(15, 37, 55, 0.08);
+    }
+
+    .tabs-container {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none; /* Firefox */
+      padding: 0 16px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .tabs-container::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+    }
+
+    .tab-btn {
+      flex: 0 0 auto;
+      background: #E4DFD5;
+      color: var(--primary);
+      border: none;
+      padding: 10px 18px;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .tab-btn.active {
+      background-color: var(--primary);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(15, 37, 55, 0.25);
+    }
+
+    /* ==========================================
+       4. DAY CONTENT & TIMELINE
+       ========================================== */
+    .day-panel {
+      display: none;
+    }
+
+    .day-panel.active {
+      display: block;
+      animation: fadeIn 0.35s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hotel-card {
+      background: #EBF2F7;
+      border-left: 4px solid var(--primary);
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Collapsible Timeline Item */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .timeline-item {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .timeline-header {
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      background: #FFF;
+    }
+
+    .time-badge {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--secondary);
+      background: rgba(224, 122, 95, 0.1);
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-bottom: 4px;
+      display: inline-block;
+    }
+
+    .title-group h3 {
+      font-size: 1rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .transport-info {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .toggle-icon {
+      color: var(--text-muted);
+      transition: transform 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .timeline-item.open .toggle-icon {
+      transform: rotate(180deg);
+      color: var(--secondary);
+    }
+
+    .timeline-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      background: #FAF8F5;
+      padding: 0 16px;
+      border-top: 1px solid transparent;
+    }
+
+    .timeline-item.open .timeline-body {
+      max-height: 500px;
+      padding: 16px;
+      border-top: 1px solid #EAE6DF;
+    }
+
+    .detail-row {
+      margin-bottom: 10px;
+      font-size: 0.88rem;
+    }
+
+    .detail-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .detail-row strong {
+      color: var(--primary);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .alert-box {
+      background: #FFF3CD;
+      color: #856404;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Food & Cafe Section Header */
+    .section-title {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin: 28px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #DDD5C7;
+    }
+
+    .food-card {
+      background: #FFF;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+      border-left: 3px solid var(--secondary);
+    }
+
+    .food-card h4 {
+      font-size: 0.95rem;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .food-card p {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. HERO SECTION -->
+  <header class="hero">
+    <div class="brand-title">BUSAN VIBE / 蔚藍釜山</div>
+    <h1>BUSAN ESCAPE</h1>
+    <p style="font-size: 0.88rem; opacity: 0.9;">走進海風與咖啡香的 4 天 3 夜慢活之旅</p>
+  </header>
+
+  <main class="container">
+    
+    <!-- BENTO GRID QUICK INFO -->
+    <section class="bento-grid">
+      <div class="bento-card">
+        <i class="fa-regular fa-calendar icon"></i>
+        <span class="label">旅行日期</span>
+        <span class="val">1/8 - 1/11</span>
+      </div>
+      
+      <div class="bento-card">
+        <i class="fa-solid fa-cloud-sun icon"></i>
+        <span class="label">氣溫預告</span>
+        <span class="val">約 2°C~10°C</span>
+      </div>
+
+      <div class="bento-card full-width">
+        <i class="fa-solid fa-tags icon"></i>
+        <span class="label">主打風格</span>
+        <div class="tags-wrapper">
+          <span class="tag">#海景咖啡</span>
+          <span class="tag">#天空膠囊列車</span>
+          <span class="tag">#米其林韓賞</span>
+          <span class="tag">#五星汗蒸幕</span>
+        </div>
+      </div>
+
+      <div class="bento-card full-width">
+        <a href="#" class="cta-btn" onclick="alert('PDF 行程下載功能預備中！')">
+          <i class="fa-solid fa-file-pdf"></i> 下載完整行程 PDF
+        </a>
+      </div>
+    </section>
+
+    <!-- 2. PIN-TO-TOP STICKY TAB NAVIGATION -->
+    <div class="tabs-sticky-wrapper">
+      <div class="tabs-container">
+        <button class="tab-btn active" onclick="switchDay(1)">Day 1 (1/8)</button>
+        <button class="tab-btn" onclick="switchDay(2)">Day 2 (1/9)</button>
+        <button class="tab-btn" onclick="switchDay(3)">Day 3 (1/10)</button>
+        <button class="tab-btn" onclick="switchDay(4)">Day 4 (1/11)</button>
+      </div>
+    </div>
+
+    <!-- 3. DAY CONTENT PANELS -->
+
+    <!-- DAY 1 PANEL -->
+    <div id="day1" class="day-panel active">
+      <div class="hotel-card">
+        <i class="fa-solid fa-hotel"></i> 住宿：L7 海雲台 (L7 Haeundae)
+      </div>
+
+      <div class="timeline">
+        <!-- Item 1 -->
+        <div class="timeline-item open">
+          <div class="timeline-header" onclick="toggleTimeline(this)">
+            <div class="title-group">
+              <span class="time-badge">17:45 ~ 19:30</span>
+              <h3>金海機場 ➔ L7 海雲台 Check-in</h3>
+              <div class="transport-info"><i class="fa-solid fa-taxi"></i> 計程車 40 mins (Kakao T / Uber)</div>
+            </div>
+            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+          </div>
+          <div class="timeline-body">
+            <div class="detail-row">
+              <strong>行程細節</strong>
+              搭乘 BR164 於 17:45 降落釜山，出關後直接搭車前往海雲台 L7 飯店辦理入住或寄放行李。
+            </div>
+            <div class="detail-row">
+              <strong>行前準備</strong>
+              提前下載並綁定好 Kakao T 或 Uber App，出關叫車直達。
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="timeline-item">
+          <div class="timeline-header" onclick="toggleTimeline(this)">
+            <div class="title-group">
+              <span class="time-badge">19:30 ~ 21:00</span>
+              <h3>海雲台商圈 / 美食街晚餐</h3>
+              <div class="transport-info"><i class="fa-solid fa-person-walking"></i> 步行 5~10 mins</div>
+            </div>
+            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+          </div>
+          <div class="timeline-body">
+            <div class="detail-row">
+              <strong>行程細節</strong>
+              飯店周邊美食機能成熟，步行即可抵達商圈享用道地熱騰騰美食（如海雲台傳統市場小吃、豬肉湯飯等）。
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="timeline-item">
+          <div class="timeline-header" onclick="toggleTimeline(this)">
+            <div class="title-group">
+              <span class="time-badge">21:00 ~ 22:00</span>
+              <h3>海雲台海灘夜景散策</h3>
+              <div class="transport-info"><i class="fa-solid fa-person-walking"></i> 步行 5 mins</div>
+            </div>
+            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+          </div>
+          <div class="timeline-body">
+            <div class="detail-row">
+              <strong>行程細節</strong>
+              欣賞冬夜海景，於便利商店採買飲用水與小點心後，早點回飯店休息適應氣溫。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 2 PANEL -->
+    <div id="day2" class="day-panel">
+      <div class="hotel-card">
+        <i class="fa-solid fa-hotel"></i> 住宿：L7 海雲台 (L7 Haeundae)
+      </div>
+
+      <div class="timeline">
+        <!-- Item 1 -->
+        <div class="timeline-item open">
+          <div class="timeline-header" onclick="toggleTimeline(this)">
+            <div class="title-group">
+              <span class="time-badge">09:30 ~ 12:00</span>
+              <h3>海東龍宮寺參拜與散策</h3>
+              <div class="transport-info"><i class="fa-solid fa-taxi"></i> 計程車 20 mins</div>
+            </div>
+            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+          </div>
+          <div class="timeline-body">
+            <div class="detail-row">
+              <strong>看點推演</strong>
+              十二生肖石雕像 ➔ 108 階長壽階梯 ➔ 海水觀音大佛。全韓唯一建在海邊岩石上的觀音聖地。
+            </div>
+            <div class="alert-box">
+              <i class="fa-solid fa-wind"></i> 海風極大，務必穿著防風外套與毛帽！
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="timeline-item">
+          <div class="timeline-header" onclick="toggleTimeline(this)">
+            <div class="title-group">
+              <span class="time-badge">12:00 ~ 13:30</span>
+              <h3>午餐：Centum City 或機張美食</h3>
+              <div class="transport-info"><i class="fa-solid fa-taxi"></i> 計程車 15 mins</div>
+            </div>
+            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+          </div>
+          <div class="timeline-body">
+            <div class="detail-row">
+              <strong>餐點選擇</strong>
+              備選：機張現蒸大蟹、海鮮刀削麵或 Centum City 百貨美食街。
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="timeline-item">
+          <div class="timeline-header" onclick="toggleTimeline(this)">
+            <div class="title-group">
+              <span class="time-badge">13:30 ~ 17:30</span>
+              <h3>SPA LAND 五星汗蒸幕 (4小時)</h3>
+              <div class="transport-info"><i class="fa-solid fa-building"></i> 新世界百貨內</div>
+            </div>
+            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+          </div>
+          <div class="timeline-body">
+            <div class="detail-row">
+              <strong>體驗亮點</strong>
+              天然溫泉與各式高檔主題桑拿房，羊角頭巾、溫泉蛋、甜米釀必體驗。
+            </div>
+            <div class="alert-box">
+              <i class="fa-solid fa-ticket"></i> 已預購票券/使用 VBP，出示憑證入場。
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="timeline-item">
+          <div class="timeline-header" onclick="toggleTimeline(this)">
+            <div class="title-group">
+              <span class="time-badge">19:30 ~ 21:30</span>
+              <h3>廣安里 ➔ Millac The Market ➔ 無人機秀</h3>
+              <div class="transport-info"><i class="fa-solid fa-taxi"></i> 計程車 20 mins</div>
+            </div>
+            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+          </div>
+          <div class="timeline-body">
+            <div class="detail-row">
+              <strong>行程細節</strong>
+              複合文創空間 Millac The Market 享用晚餐，並於海灘觀賞 21:00 場次的週六限定海上無人機燈光秀。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Food/Cafe Notes for Day 2 -->
+      <h3 class="section-title"><i class="fa-solid fa-mug-hot"></i> 廣安里早午餐備選 (擇一)</h3>
+      <div class="food-card">
+        <h4>Working Holiday 廣安里店 (09:00 開)</h4>
+        <p>海景第一排早午餐，可直視廣安大橋夜景與海景。</p>
+      </div>
+      <div class="food-card">
+        <h4>All Sunday 貝果店 (08:00 開)</h4>
+        <p>釜山超人氣貝果，推薦鹽奶油與莓果口味搭配 Cream Cheese。</p>
+      </div>
+    </div>
+
+    <!-- DAY 3 PANEL -->
+    <div id="day3" class="day-panel">
+      <div class="hotel-card">
+        <i class="fa-solid fa-hotel"></i> 住宿：L7 海雲台 (L7 Haeundae)
+      </div>
+
+      <div class="timeline">
+        <!-- Item 1 -->
+        <div class="timeline-item open">
+          <div class="timeline-header" onclick="toggleTimeline(this)">
+            <div class="title-group">
+              <span class="time-badge">11:45 ~ 14:00</span>
+              <h3>午餐：Palate (米其林高檔法式韓賞料理)</h3>
+              <div class="transport-info"><i class="fa-solid fa-taxi"></i> 計程車 10 mins</div>
+            </div>
+            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+          </div>
+          <div class="timeline-body">
+            <div class="detail-row">
+              <strong>美食盛宴</strong>
+              頂級海景伴隨精緻當代料理，結合在地時令食材與法式烹飪法。
+            </div>
+            <div class="alert-box">
+              <i class="fa-solid fa-circle-exclamation"></i> ⚠️ 已預約完成 (12:00)，請準時抵達！
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="timeline-item">
+          <div class="timeline-header" onclick="toggleTimeline(this)">
+            <div class="title-group">
+              <span class="time-badge">14:15 ~ 16:00</span>
+              <h3>天空膠囊列車 (尾浦 ➔ 青沙浦)</h3>
+              <div class="transport-info"><i class="fa-solid fa-train"></i> 藍線公園 (Blueline Park)</div>
+            </div>
+            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+          </div>
+          <div class="timeline-body">
+            <div class="detail-row">
+              <strong>經典必訪</strong>
+              3人獨立車廂，高空俯瞰東釜山果凍海與蔚藍海岸線。
+            </div>
+            <div class="alert-box">
+              <i class="fa-solid fa-ticket"></i> ⚠️ 務必提前於官網預約搭乘時段！
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="timeline-item">
+          <div class="timeline-header" onclick="toggleTimeline(this)">
+            <div class="title-group">
+              <span class="time-badge">16:00 ~ 17:30</span>
+              <h3>青沙浦踏石觀景台 & 海邊鐵道平交道</h3>
+              <div class="transport-info"><i class="fa-solid fa-person-walking"></i> 步行 10 mins</div>
+            </div>
+            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+          </div>
+          <div class="timeline-body">
+            <div class="detail-row">
+              <strong>拍照點</strong>
+              拍攝「灌籃高手」風格海景平交道，漫步至踏石天空步道觀景台感受日落。
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="timeline-item">
+          <div class="timeline-header" onclick="toggleTimeline(this)">
+            <div class="title-group">
+              <span class="time-badge">17:30 ~ 19:30</span>
+              <h3>晚餐：青沙浦海岸烤貝小屋</h3>
+              <div class="transport-info"><i class="fa-solid fa-utensils"></i> 海岸第一排</div>
+            </div>
+            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+          </div>
+          <div class="timeline-body">
+            <div class="detail-row">
+              <strong>道地美食</strong>
+              邊聽浪聲邊享用鮮美澎湃烤貝與海鮮拉麵。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Food/Cafe Notes for Day 3 -->
+      <h3 class="section-title"><i class="fa-solid fa-utensils"></i> 機張 / 龍宮寺周邊午餐備選</h3>
+      <div class="food-card">
+        <h4>海雲台 31cm 海鮮刀切麵 (松亭總店)</h4>
+        <p>滿滿鮮貝與蛤蜊的大碗道地海鮮刀削麵。</p>
+      </div>
+      <div class="food-card">
+        <h4>黃金帝王蟹水產 (황금대게수산)</h4>
+        <p>現場挑選鮮美蒸雪蟹與帝王蟹。</p>
+      </div>
+    </div>
+
+    <!-- DAY 4 PANEL -->
+    <div id="day4" class="day-panel">
+      <div class="hotel-card">
+        <i class="fa-solid fa-hotel"></i> 住宿：西面樂天飯店 (LOTTE HOTEL BUSAN)
+      </div>
+
+      <div class="timeline">
+        <!-- Item 1 -->
+        <div class="timeline-item open">
+          <div class="timeline-header" onclick="toggleTimeline(this)">
+            <div class="title-group">
+              <span class="time-badge">09:30 ~ 10:30</span>
+              <h3>L7 海雲台 退房 ➔ 轉住西面樂天寄放行李</h3>
+              <div class="transport-info"><i class="fa-solid fa-subway"></i> 地鐵2號線 30 mins / 🚕 計程車</div>
+            </div>
+            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+          </div>
+          <div class="timeline-body">
+            <div class="detail-row">
+              <strong>跨區移動</strong>
+              行李較多時建議搭乘 Kakao T Venti 大車，先至西面樂天飯店寄放行李。
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="timeline-item">
+          <div class="timeline-header" onclick="toggleTimeline(this)">
+            <div class="title-group">
+              <span class="time-badge">10:30 ~ 12:00</span>
+              <h3>田浦 / 西面選物店連線</h3>
+              <div class="transport-info"><i class="fa-solid fa-bag-shopping"></i> 街區步行 1~3 mins</div>
+            </div>
+            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+          </div>
+          <div class="timeline-body">
+            <div class="detail-row">
+              <strong>購物地圖</strong>
+              連續探索 OBJECT、別花商店、THINGS OF NOTE、TWIN ÉTOILE 4 家文創寶藏店。
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="timeline-item">
+          <div class="timeline-header" onclick="toggleTimeline(this)">
+            <div class="title-group">
+              <span class="time-badge">12:00 ~ 18:30</span>
+              <h3>南浦洞 / 富平罐頭市場小吃巡禮</h3>
+              <div class="transport-info"><i class="fa-solid fa-store"></i> 庶民美食</div>
+            </div>
+            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+          </div>
+          <div class="timeline-body">
+            <div class="detail-row">
+              <strong>必吃小吃</strong>
+              BIFF 廣場元祖堅果糖餅、現磨綠豆煎餅、現烤厚切五花肉飯卷。
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="timeline-item">
+          <div class="timeline-header" onclick="toggleTimeline(this)">
+            <div class="title-group">
+              <span class="time-badge">18:30 ~ 20:30</span>
+              <h3>晚餐：Cor Pasta Bar</h3>
+              <div class="transport-info"><i class="fa-solid fa-wine-glass"></i> 精緻義大利麵 Bar</div>
+            </div>
+            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+          </div>
+          <div class="timeline-body">
+            <div class="detail-row">
+              <strong>行程細節</strong>
+              完美結束釜山最後一晚的精緻晚餐體驗。
+            </div>
+            <div class="alert-box">
+              <i class="fa-solid fa-circle-exclamation"></i> ⚠️ 已預約完成 (18:30)，請準時抵達！
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Food/Cafe Notes for Day 4 -->
+      <h3 class="section-title"><i class="fa-solid fa-mug-hot"></i> 西面/南浦洞 咖啡與點心備選</h3>
+      <div class="food-card">
+        <h4>히떼 로스터리 (Hytte Roastery)</h4>
+        <p>田浦 2 樓木質調溫馨手沖咖啡（樓梯較陡需注意）。</p>
+      </div>
+      <div class="food-card">
+        <h4>Good Ol' Days Cafe</h4>
+        <p>位於南浦洞，空間寬敞，可在店內選購釜山攝影明信片現場寄出。</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- 4. INTERACTION JAVASCRIPT -->
+  <script>
+    // Tab switching function
+    function switchDay(dayNum) {
+      // Toggle tab buttons
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach((btn, idx) => {
+        if (idx === dayNum - 1) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Toggle content panels
+      const panels = document.querySelectorAll('.day-panel');
+      panels.forEach((panel, idx) => {
+        if (idx === dayNum - 1) {
+          panel.classList.add('active');
+        } else {
+          panel.classList.remove('active');
+        }
+      });
+    }
+
+    // Timeline Collapsible Function
+    function toggleTimeline(headerElem) {
+      const timelineItem = headerElem.parentElement;
+      timelineItem.classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>
